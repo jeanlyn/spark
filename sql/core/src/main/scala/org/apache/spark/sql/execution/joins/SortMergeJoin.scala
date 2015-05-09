@@ -94,7 +94,7 @@ case class SortMergeJoin(
   private def requiredOrders(keys: Seq[Expression]): Seq[SortOrder] =
     keys.map(SortOrder(_, Ascending))
 
-  override def execute(): RDD[Row] = {
+  override def doExecute(): RDD[Row] = {
     val streamResults = streamed.execute().map(_.copy())
     val bufferResults = buffered.execute().map(_.copy())
 
